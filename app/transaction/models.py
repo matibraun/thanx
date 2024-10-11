@@ -17,10 +17,9 @@ class Transaction(models.Model):
 
 
     def save(self, *args, **kwargs):
-        # Calculate the user's total points before this transaction
+        
         total_points = self.user.transactions.aggregate(total=models.Sum('points'))['total'] or 0
         
-        # Ensure the new transaction does not result in a negative total for the user
         if total_points + self.points < 0:
             raise ValidationError("User's total points cannot go negative.")
         

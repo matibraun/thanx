@@ -17,6 +17,6 @@ class UserSerializer(serializers.Serializer):
 
 class RedemptionSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    reward_id = serializers.IntegerField()
+    reward = RewardSerializer()
     user = UserSerializer()
     created_at = serializers.DateTimeField()
