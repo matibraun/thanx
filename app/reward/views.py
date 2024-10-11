@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -66,11 +67,14 @@ class RedemptionViewSet(viewsets.ViewSet):
     """
 
     def list(self, request):
+
         queryset = Redemption.objects.all()
         serializer = RedemptionSerializer(queryset, many=True)
+
         return Response(serializer.data)
 
     def retrieve(self, request, user_id=None):
+
         queryset = Redemption.objects.filter(user_id=user_id)
         serializer = RedemptionSerializer(queryset, many=True)
         
@@ -81,23 +85,31 @@ class RedemptionViewSet(viewsets.ViewSet):
     
 
     def create(self, request):
+
         reward_id = request.data.get('reward_id')
         user_id = request.data.get('user_id')
 
         reward = get_object_or_404(Reward, id=reward_id)
         user = get_object_or_404(User, id=user_id)
 
-        redemption = Redemption(reward=reward, user=user)
-        redemption.save()
-
         transaction = Transaction(
             user=user,
             points=-reward.points_required,
             type_id=2
         )
-        transaction.full_clean()
-        transaction.save()
 
-        serializer = RedemptionSerializer(redemption)
+        try:
 
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+            transaction.full_clean()
+            transaction.save()
+            
+            redemption = Redemption(reward=reward, user=user)
+            redemption.save()
+
+            serializer = RedemptionSerializer(redemption)
+            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        except ValidationError as e:
+
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
