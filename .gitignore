@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Django Specific
+*.log
+*.pot
+*.pyc
+*.sqlite3
+media/
+staticfiles/
+static/
+local_settings.py
+db.sqlite3
+
+# Environment Variables
+.env
+*.env
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Pytest
+.cache/
+.pytest_cache/
+*.cover
+*.coverage
+.coverage.*
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# OS specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
