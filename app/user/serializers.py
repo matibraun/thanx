@@ -13,3 +13,6 @@ class UserSerializer(serializers.Serializer):
     nationality = serializers.CharField(max_length=50, required=False, allow_blank=True)
     gender = serializers.CharField(max_length=50, required=False, allow_blank=True)
     civil_state = serializers.CharField(max_length=50, required=False, allow_blank=True)
+
+class UserOutputSerializer(UserSerializer):
+    id = serializers.IntegerField(read_only=True)

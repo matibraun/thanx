@@ -5,3 +5,6 @@ class RewardSerializer(serializers.Serializer):
     description = serializers.CharField()
     points_required = serializers.IntegerField()
     available = serializers.BooleanField(default=True)
+
+class RewardOutputSerializer(RewardSerializer):
+    id = serializers.IntegerField(read_only=True)
