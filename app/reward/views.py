@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
-from app.reward.models import Reward
-from .serializers import RewardSerializer, RewardOutputSerializer
+from app.reward.models import Redemption, Reward
+from .serializers import RedemptionSerializer, RewardSerializer, RewardOutputSerializer
 
 
 class RewardViewSet(viewsets.ModelViewSet):
@@ -53,4 +53,27 @@ class AvailableRewardViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset().filter(available=True)
         serializer = RewardOutputSerializer(queryset, many=True)
         
+        return Response(serializer.data)
+
+
+
+class RedemptionViewSet(viewsets.ViewSet):
+    """
+    A ViewSet that handles listing and retrieving redemptions.
+    """
+
+    def list(self, request):
+        # Retrieve all redemptions
+        queryset = Redemption.objects.all()
+        serializer = RedemptionSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, user_id=None):
+        # Retrieve redemptions for a specific user
+        queryset = Redemption.objects.filter(user_id=user_id)
+        serializer = RedemptionSerializer(queryset, many=True)
+        
+        if not serializer.data:
+            return Response({'detail': 'No redemptions found for this user.'}, status=status.HTTP_404_NOT_FOUND)
+
         return Response(serializer.data)

@@ -46,7 +46,16 @@ class UserPointsBalanceView(APIView):
 
             total_points = Transaction.objects.filter(user_id=user_id).aggregate(total=models.Sum('points'))['total'] or 0
 
-            return Response({'user_id': user.id, 'points_balance': total_points}, status=status.HTTP_200_OK)
+            return Response(
+                {
+                    'user_id': user.id,
+                    'user_email': user.email,
+                    'user_first_name': user.first_name,
+                    'user_last_name': user.last_name,
+                    'points_balance': total_points
+                },
+                status=status.HTTP_200_OK
+            )
         
         except User.DoesNotExist:
 

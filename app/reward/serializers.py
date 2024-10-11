@@ -8,3 +8,15 @@ class RewardSerializer(serializers.Serializer):
 
 class RewardOutputSerializer(RewardSerializer):
     id = serializers.IntegerField(read_only=True)
+
+class UserSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    email = serializers.EmailField()
+    first_name = serializers.CharField(max_length=50)
+    last_name = serializers.CharField(max_length=50)
+
+class RedemptionSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    reward_id = serializers.IntegerField()
+    user = UserSerializer()
+    created_at = serializers.DateTimeField()
