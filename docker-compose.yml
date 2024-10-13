@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .  # Set the context to the root folder where requirements.txt is located
+      dockerfile: app/Dockerfile  # Path to the Dockerfile inside the app folder
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_DB=thanx
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  cli_app:
+    build:
+      context: .  # Set the context to the root folder where requirements.txt is located
+      dockerfile: cli_app/Dockerfile  # Path to the Dockerfile inside the cli_app folder
+    volumes:
+      - .:/cli_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_DB=thanx
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: thanx
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
