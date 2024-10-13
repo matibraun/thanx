@@ -60,11 +60,97 @@ docker-compose logs -f app
 
 6. Running CLI Commands
 
-To run CLI commands, use Docker Compose to execute commands from the cli_app container. For example:
+To run CLI commands, position yourself within app_cli folder (placed inside root folder), and run the following command:
 
-docker-compose run cli_app python cli.py <command-name>
+python3 cli.py <command-name>
 
-This will run your CLI app commands within the container.
+for instance:
+
+python3 cli.py list-users
+
+* if you don't have python3 installed you can run it with python instead of python3
+
+The app comes with preload information for all items (users, rewards, redemptions, and so) so from the begining you can check information or load data too.
+
+The following are the commands and their payloads:
+
+    1. list-users
+    Description: Lists all users.
+    Payload: None.
+
+    Command: python cli.py list-users
+
+    2. create-user
+    Description: Creates a new user with the given details.
+    Payload:
+    email: User email.
+    first_name: User's first name.
+    last_name: User's last name.
+    country_code: Country code (optional, default: empty string).
+    phone: Phone number (optional, default: empty string).
+    document_type: Document type.
+    document_number: Document number.
+    address: User address (optional, default: empty string).
+    nationality: User nationality (optional, default: empty string).
+    gender: Gender (optional, default: empty string).
+    civil_state: Civil state (optional, default: empty string).
+
+    Command: python cli.py create-user user@example.com John Doe --country_code +1 --phone 1234567890 --document_type passport --document_number A12345678 --address "123 Main St" --nationality USA --gender male --civil_state single
+
+    3. get-user-points-balance
+    Description: Retrieves a user's points balance.
+    Payload:
+    user_id: User ID to retrieve points balance for.
+
+    Command: python cli.py get-user-points-balance 1
+
+    4. list-rewards
+    Description: Lists all rewards available.
+    Payload: None.
+
+    Command: python cli.py list-rewards
+
+    5. list-available-rewards
+    Description: Lists rewards that are available to be redeemed.
+    Payload: None.
+
+    Command: python cli.py list-available-rewards
+
+    6. create-reward
+    Description: Creates a new reward.
+    Payload:
+    name: Name of the reward.
+    points_required: Points required to redeem the reward.
+    description: Description of the reward (optional).
+
+    Command: python cli.py create-reward "Free Coffee" 100 --description "Redeem for a free coffee at the café."
+
+    7. list-redemptions
+    Description: Lists all redemptions.
+    Payload: None.
+
+    Command: python cli.py list-redemptions
+
+    8. list-redemptions-by-user
+    Description: Lists redemptions for a specific user.
+    Payload:
+    user_id: User ID to list redemptions for.
+
+    Command: python cli.py list-redemptions-by-user 1
+
+    9. redeem-reward
+    Description: Redeems a reward for a user.
+    Payload:
+    user_id: ID of the user redeeming the reward.
+    reward_id: ID of the reward being redeemed.
+
+    Command: python cli.py redeem-reward --user-id 1 --reward-id 2
+
+    10. list-transactions
+    Description: Lists all transactions.
+    Payload: None.
+
+    Command: python cli.py list-transactions
 
 7. Accessing PostgreSQL Database
 
