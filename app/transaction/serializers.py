@@ -16,3 +16,4 @@ class TransactionSerializer(serializers.Serializer):
     user = UserSerializer()
     points = serializers.IntegerField()
     type = TransactionTypeSerializer()
+    created_at = serializers.DateTimeField()
