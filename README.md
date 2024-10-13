@@ -23,7 +23,7 @@ Steps to Set Up the Project Locally
 
 Clone the repository to your local machine:
 
-git clone 
+git clone https://github.com/matibraun/thanx.git
 cd <repository-name>
 
 2. Set Up Environment Variables
@@ -50,15 +50,7 @@ Once the containers are up and running, run the database migrations to set up th
 
 docker-compose run app python manage.py migrate
 
-5. Create a Superuser (Optional)
-
-If you need to create a Django superuser for accessing the admin panel, run the following command:
-
-docker-compose run app python manage.py createsuperuser
-
-Follow the prompts to create the superuser credentials.
-
-6. Running the Application
+5. Running the Application
 
 The Django server will be accessible on http://localhost:8000 once the containers are running. You can access the API or admin panel by navigating to this URL in your browser.
 
@@ -66,7 +58,7 @@ To view the logs or troubleshoot, you can run:
 
 docker-compose logs -f app
 
-7. Running CLI Commands
+6. Running CLI Commands
 
 To run CLI commands, use Docker Compose to execute commands from the cli_app container. For example:
 
@@ -74,7 +66,7 @@ docker-compose run cli_app python cli.py <command-name>
 
 This will run your CLI app commands within the container.
 
-8. Accessing PostgreSQL Database
+7. Accessing PostgreSQL Database
 
 To connect to the PostgreSQL database from a tool like DBeaver, use the following connection details:
 
@@ -84,7 +76,7 @@ To connect to the PostgreSQL database from a tool like DBeaver, use the followin
 - Username: postgres
 - Password: postgres
 
-9. Shutting Down the Containers
+8. Shutting Down the Containers
 
 When you're done working with the project, you can shut down the Docker containers:
 
@@ -92,12 +84,3 @@ docker-compose down
 
 This will stop and remove all containers, networks, and volumes created by Docker Compose.
 
-Troubleshooting
-
-- ModuleNotFoundError: If you encounter missing Python packages, ensure that the requirements.txt file is properly set up and that all necessary dependencies are listed.
-- Database connection issues: Make sure that the PostgreSQL container is running and accessible on port 5432.
-
-Additional Notes
-
-- Ensure that Docker has sufficient resources (memory and CPU) allocated if you're working on a large project or running multiple containers.
-- To view or modify the Django settings, check the settings.py file in the app directory.
