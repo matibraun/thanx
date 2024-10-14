@@ -31,9 +31,13 @@ cd {repository-name}
 Create a .env file in the root folder of the project with the following environment variables (or modify them according to your needs):
 
 POSTGRES_DB=thanx
+
 POSTGRES_USER=postgres
+
 POSTGRES_PASSWORD=postgres
+
 POSTGRES_HOST=db
+
 POSTGRES_PORT=5432
 
 3. Build Docker Containers
