@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set the working directory
-WORKDIR /cli_app
+WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -22,14 +22,16 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements.txt from the root folder to the cli_app folder
-COPY requirements.txt /cli_app/
+COPY requirements.txt /app/
 
 # Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Copy the project files
-COPY . /cli_app/
+COPY . /app/
+
+CMD ["python3", "cli_app/cli.py"]
 
 # Expose any necessary ports
 EXPOSE 5000
