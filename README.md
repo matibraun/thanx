@@ -193,3 +193,12 @@ docker-compose down
 
 This will stop and remove all containers, networks, and volumes created by Docker Compose.
 
+9. Running tests:
+
+To run the tests for the project, follow these steps:
+
+Position yourself within the root folder (where manage.py lives).
+
+Execute the following command to run the tests inside the Docker container:
+
+Tests command: docker-compose exec app python manage.py test
