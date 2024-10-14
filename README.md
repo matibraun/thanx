@@ -58,7 +58,9 @@ To view the logs or troubleshoot, you can run:
 
 docker-compose logs -f app
 
-6. Running CLI Commands
+6. Running CLI Commands and API Requests
+
+The app comes with preload information for all items (users, rewards, redemptions, and so) so from the begining you can check information or load data too.
 
 To run CLI commands, position yourself within app_cli folder (placed inside root folder), and run the following command:
 
@@ -68,89 +70,79 @@ for instance:
 
 python3 cli.py list-users
 
-* if you don't have python3 installed you can run it with python instead of python3
+* if you don't have python3 installed you can run it with python instead of python3.
 
-The app comes with preload information for all items (users, rewards, redemptions, and so) so from the begining you can check information or load data too.
+In addition to CLI commands, you can interact with the application using API requests via Postman or the browser.
+
+Below are the CLI commands with their equivalent API routes and methods:
 
 The following are the commands and their payloads:
 
-    1. list-users
-    Description: Lists all users.
-    Payload: None.
+1-List Users
 
-    Command: python cli.py list-users
+CLI Command: python cli.py list-users
+API Endpoint: GET /user/users/
+Example: http://localhost:8000/user/users/
 
-    2. create-user
-    Description: Creates a new user with the given details.
-    Payload:
-    email: User email.
-    first_name: User's first name.
-    last_name: User's last name.
-    country_code: Country code (optional, default: empty string).
-    phone: Phone number (optional, default: empty string).
-    document_type: Document type.
-    document_number: Document number.
-    address: User address (optional, default: empty string).
-    nationality: User nationality (optional, default: empty string).
-    gender: Gender (optional, default: empty string).
-    civil_state: Civil state (optional, default: empty string).
+2-Create User
 
-    Command: python cli.py create-user user@example.com John Doe --country_code +1 --phone 1234567890 --document_type passport --document_number A12345678 --address "123 Main St" --nationality USA --gender male --civil_state single
+CLI Command: python cli.py create-user user@example.com John Doe --country_code +1 --phone 1234567890 --document_type passport --document_number A12345678 --address "123 Main St" --nationality USA --gender male --civil_state single
+API Endpoint: POST /user/users/
+Example Payload:
+{ "email": "user@example.com", "first_name": "John", "last_name": "Doe", "country_code": "+1", "phone": "1234567890", "document_type": "passport", "document_number": "A12345678", "address": "123 Main St", "nationality": "USA", "gender": "male", "civil_state": "single" }
+Example: http://localhost:8000/user/users/
 
-    3. get-user-points-balance
-    Description: Retrieves a user's points balance.
-    Payload:
-    user_id: User ID to retrieve points balance for.
+3-Get User Points Balance
 
-    Command: python cli.py get-user-points-balance 1
+CLI Command: python cli.py get-user-points-balance 1
+API Endpoint: GET /user/users/{id}/points-balance/
+Example: http://localhost:8000/user/users/1/points-balance/
 
-    4. list-rewards
-    Description: Lists all rewards available.
-    Payload: None.
+4-List Rewards
 
-    Command: python cli.py list-rewards
+CLI Command: python cli.py list-rewards
+API Endpoint: GET /reward/rewards/
+Example: http://localhost:8000/reward/rewards/
 
-    5. list-available-rewards
-    Description: Lists rewards that are available to be redeemed.
-    Payload: None.
+5-List Available Rewards
 
-    Command: python cli.py list-available-rewards
+CLI Command: python cli.py list-available-rewards
+API Endpoint: GET /reward/available-rewards/
+Example: http://localhost:8000/reward/available-rewards/
 
-    6. create-reward
-    Description: Creates a new reward.
-    Payload:
-    name: Name of the reward.
-    points_required: Points required to redeem the reward.
-    description: Description of the reward (optional).
+6-Create Reward
 
-    Command: python cli.py create-reward "Free Coffee" 100 --description "Redeem for a free coffee at the café."
+CLI Command: python cli.py create-reward "Free Coffee" 100 --description "Redeem for a free coffee at the café."
+API Endpoint: POST /reward/rewards/
+Example Payload:
+{ "name": "Free Coffee", "points_required": 100, "description": "Redeem for a free coffee at the café." }
+Example: http://localhost:8000/reward/rewards/
 
-    7. list-redemptions
-    Description: Lists all redemptions.
-    Payload: None.
+7-List Redemptions
 
-    Command: python cli.py list-redemptions
+CLI Command: python cli.py list-redemptions
+API Endpoint: GET /reward/redemptions/
+Example: http://localhost:8000/reward/redemptions/
 
-    8. list-redemptions-by-user
-    Description: Lists redemptions for a specific user.
-    Payload:
-    user_id: User ID to list redemptions for.
+8-List Redemptions by User
 
-    Command: python cli.py list-redemptions-by-user 1
+CLI Command: python cli.py list-redemptions-by-user 1
+API Endpoint: GET /reward/redemptions/user/{id}/
+Example: http://localhost:8000/reward/redemptions/user/1/
 
-    9. redeem-reward
-    Description: Redeems a reward for a user.
-    Payload:
-    user_id: ID of the user redeeming the reward.
-    reward_id: ID of the reward being redeemed.
+9-Redeem Reward
 
-    Command: python cli.py redeem-reward --user-id 1 --reward-id 2
+CLI Command: python cli.py redeem-reward --user-id 1 --reward-id 2
+API Endpoint: POST /reward/redemptions/
+Example Payload:
+{ "user_id": 1, "reward_id": 2 }
+Example: http://localhost:8000/reward/redemptions/
 
-    10. list-transactions
-    Description: Lists all transactions.
-    Payload: None.
+10-List Transactions
 
-    Command: python cli.py list-transactions
+CLI Command: python cli.py list-transactions
+API Endpoint: GET /transaction/transactions/
+Example: http://localhost:8000/transaction/transactions/
 
 7. Accessing PostgreSQL Database
 
