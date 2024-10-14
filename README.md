@@ -81,12 +81,14 @@ The following are the commands and their payloads:
 1-List Users
 
 CLI Command: python3 cli.py list-users
+
 API Endpoint: GET /user/users/
 Example: http://localhost:8000/user/users/
 
 2-Create User
 
 CLI Command: python3 cli.py create-user user@example.com John Doe --country_code +1 --phone 1234567890 --document_type passport --document_number A12345678 --address "123 Main St" --nationality USA --gender male --civil_state single
+
 API Endpoint: POST /user/users/
 Example Payload:
 { "email": "user@example.com", "first_name": "John", "last_name": "Doe", "country_code": "+1", "phone": "1234567890", "document_type": "passport", "document_number": "A12345678", "address": "123 Main St", "nationality": "USA", "gender": "male", "civil_state": "single" }
@@ -95,24 +97,28 @@ Example: http://localhost:8000/user/users/
 3-Get User Points Balance
 
 CLI Command: python3 cli.py get-user-points-balance 1
+
 API Endpoint: GET /user/users/{id}/points-balance/
 Example: http://localhost:8000/user/users/1/points-balance/
 
 4-List Rewards
 
 CLI Command: python3 cli.py list-rewards
+
 API Endpoint: GET /reward/rewards/
 Example: http://localhost:8000/reward/rewards/
 
 5-List Available Rewards
 
 CLI Command: python3 cli.py list-available-rewards
+
 API Endpoint: GET /reward/available-rewards/
 Example: http://localhost:8000/reward/available-rewards/
 
 6-Create Reward
 
 CLI Command: python3 cli.py create-reward "Free Coffee" 100 --description "Redeem for a free coffee at the café."
+
 API Endpoint: POST /reward/rewards/
 Example Payload:
 { "name": "Free Coffee", "points_required": 100, "description": "Redeem for a free coffee at the café." }
@@ -121,18 +127,21 @@ Example: http://localhost:8000/reward/rewards/
 7-List Redemptions
 
 CLI Command: python3 cli.py list-redemptions
+
 API Endpoint: GET /reward/redemptions/
 Example: http://localhost:8000/reward/redemptions/
 
 8-List Redemptions by User
 
 CLI Command: python3 cli.py list-redemptions-by-user 1
+
 API Endpoint: GET /reward/redemptions/user/{id}/
 Example: http://localhost:8000/reward/redemptions/user/1/
 
 9-Redeem Reward
 
 CLI Command: python3 cli.py redeem-reward --user-id 1 --reward-id 2
+
 API Endpoint: POST /reward/redemptions/
 Example Payload:
 { "user_id": 1, "reward_id": 2 }
@@ -141,6 +150,7 @@ Example: http://localhost:8000/reward/redemptions/
 10-List Transactions
 
 CLI Command: python3 cli.py list-transactions
+
 API Endpoint: GET /transaction/transactions/
 Example: http://localhost:8000/transaction/transactions/
 
