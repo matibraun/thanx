@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User  # Adjust the import based on your app structure
+
 
 class UserSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)

@@ -1,7 +1,6 @@
 import argparse
 from api_client import APIClient
 
-# Initialize the API client
 client = APIClient()
 
 def list_users(args):
@@ -117,7 +116,6 @@ def redeem_reward(args):
     user_id = args.user_id
     reward_id = args.reward_id
 
-    # Call the client function to redeem the reward
     response = client.redeem_reward(user_id, reward_id)
 
     if response.status_code == 201:
@@ -143,17 +141,14 @@ def list_transactions(args):
 
 
 
-# Set up command-line arguments
 def main():
     parser = argparse.ArgumentParser(description="CLI for interacting with the backend rewards system.")
     
     subparsers = parser.add_subparsers()
 
-    # List all users command
     list_users_parser = subparsers.add_parser('list-users', help='List all users')
     list_users_parser.set_defaults(func=list_users)
 
-    # Command for creating a new user
     parser_create_user = subparsers.add_parser('create-user', help='Create a new user')
     parser_create_user.add_argument('email', type=str, help='User email')
     parser_create_user.add_argument('first_name', type=str, help='First name')
@@ -199,7 +194,6 @@ def main():
     transactions_parser = subparsers.add_parser('list-transactions', help="List all transactions")
     transactions_parser.set_defaults(func=list_transactions)
 
-    # Parse and execute the appropriate function based on the arguments provided
     args = parser.parse_args()
     if hasattr(args, 'func'):
         args.func(args)

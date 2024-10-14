@@ -56,17 +56,13 @@ docker-compose run app python manage.py migrate
 
 5. Running the Application
 
-The Django server will be accessible on http://localhost:8000 once the containers are running. You can access the API or admin panel by navigating to this URL in your browser.
-
-To view the logs or troubleshoot, you can run:
-
-docker-compose logs -f app
+The Django server will be accessible on http://localhost:8000 once the containers are running.
 
 6. Running CLI Commands and API Requests
 
-The app comes with preload information for all items (users, rewards, redemptions, and so) so from the begining you can check information or load data too.
+The app comes with preloaded information for all items (users, rewards, redemptions) so from the begining you can check information and load data too.
 
-To run CLI commands, position yourself within app_cli folder (placed inside root folder), and run the following command:
+To run CLI commands, run a terminal and then position yourself within app_cli folder (placed inside thanx root folder), and run the following command:
 
 python3 cli.py {command-name}
 
