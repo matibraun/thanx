@@ -24,7 +24,7 @@ Steps to Set Up the Project Locally
 Clone the repository to your local machine:
 
 git clone https://github.com/matibraun/thanx.git
-cd <repository-name>
+cd {repository-name}
 
 2. Set Up Environment Variables
 
@@ -64,7 +64,7 @@ The app comes with preload information for all items (users, rewards, redemption
 
 To run CLI commands, position yourself within app_cli folder (placed inside root folder), and run the following command:
 
-python3 cli.py <command-name>
+python3 cli.py {command-name}
 
 for instance:
 
