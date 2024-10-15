@@ -62,13 +62,13 @@ The Django server will be accessible on http://localhost:8000 once the container
 
 The app comes with preloaded information for all items (users, rewards, redemptions) so from the begining you can check information and load data too.
 
-To run CLI commands, run a terminal and then position yourself within app_cli folder (placed inside thanx root folder), and run the following command:
+To run CLI commands, run a terminal and then position yourself within thanx root folder and run the following command:
 
-python3 cli.py {command-name}
+docker-compose exec cli_app python cli_app/cli.py {command-name}
 
 for instance:
 
-python3 cli.py list-users
+docker-compose exec cli_app python cli_app/cli.py list-users
 
 * if you don't have python3 installed you can run it with python instead of python3.
 
@@ -81,7 +81,7 @@ The following are the commands and their payloads:
 
 1-List Users
 
-CLI Command: python3 cli.py list-users
+CLI Command: docker-compose exec cli_app python cli_app/cli.py list-users
 
 API Endpoint: GET /user/users/
 
@@ -90,7 +90,7 @@ Example: http://localhost:8000/user/users/
 
 2-Create User
 
-CLI Command: python3 cli.py create-user user@example.com John Doe --country_code +1 --phone 1234567890 --document_type passport --document_number A12345678 --address "123 Main St" --nationality USA --gender male --civil_state single
+CLI Command: docker-compose exec cli_app python cli_app/cli.py create-user user@example.com John Doe --country_code +1 --phone 1234567890 --document_type passport --document_number A12345678 --address "123 Main St" --nationality USA --gender male --civil_state single
 
 API Endpoint: POST /user/users/
 Example Payload:
@@ -101,7 +101,7 @@ Example: http://localhost:8000/user/users/
 
 3-Get User Points Balance
 
-CLI Command: python3 cli.py get-user-points-balance 1
+CLI Command: docker-compose exec cli_app python cli_app/cli.py get-user-points-balance 1
 
 API Endpoint: GET /user/users/{id}/points-balance/
 
@@ -110,7 +110,7 @@ Example: http://localhost:8000/user/users/1/points-balance/
 
 4-List Rewards
 
-CLI Command: python3 cli.py list-rewards
+CLI Command: docker-compose exec cli_app python cli_app/cli.py list-rewards
 
 API Endpoint: GET /reward/rewards/
 
@@ -119,7 +119,7 @@ Example: http://localhost:8000/reward/rewards/
 
 5-List Available Rewards
 
-CLI Command: python3 cli.py list-available-rewards
+CLI Command: docker-compose exec cli_app python cli_app/cli.py list-available-rewards
 
 API Endpoint: GET /reward/available-rewards/
 
@@ -128,7 +128,7 @@ Example: http://localhost:8000/reward/available-rewards/
 
 6-Create Reward
 
-CLI Command: python3 cli.py create-reward "Free Coffee" 100 --description "Redeem for a free coffee at the café."
+CLI Command: docker-compose exec cli_app python cli_app/cli.py create-reward "Free Coffee" 100 --description "Redeem for a free coffee at the café."
 
 API Endpoint: POST /reward/rewards/
 Example Payload:
@@ -139,7 +139,7 @@ Example: http://localhost:8000/reward/rewards/
 
 7-List Redemptions
 
-CLI Command: python3 cli.py list-redemptions
+CLI Command: docker-compose exec cli_app python cli_app/cli.py list-redemptions
 
 API Endpoint: GET /reward/redemptions/
 
@@ -148,7 +148,7 @@ Example: http://localhost:8000/reward/redemptions/
 
 8-List Redemptions by User
 
-CLI Command: python3 cli.py list-redemptions-by-user 1
+CLI Command: docker-compose exec cli_app python cli_app/cli.py list-redemptions-by-user 1
 
 API Endpoint: GET /reward/redemptions/user/{id}/
 
@@ -157,7 +157,7 @@ Example: http://localhost:8000/reward/redemptions/user/1/
 
 9-Redeem Reward
 
-CLI Command: python3 cli.py redeem-reward --user-id 1 --reward-id 2
+CLI Command: docker-compose exec cli_app python cli_app/cli.py redeem-reward --user-id 1 --reward-id 2
 
 API Endpoint: POST /reward/redemptions/
 Example Payload:
@@ -168,7 +168,7 @@ Example: http://localhost:8000/reward/redemptions/
 
 10-List Transactions
 
-CLI Command: python3 cli.py list-transactions
+CLI Command: docker-compose exec cli_app python cli_app/cli.py list-transactions
 
 API Endpoint: GET /transaction/transactions/
 

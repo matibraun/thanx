@@ -1,7 +1,7 @@
 import requests
 
 class APIClient:
-    BASE_URL = 'http://127.0.0.1:8000/'
+    BASE_URL = 'http://app:8000/'
 
     def get_users(self):
         response = requests.get(f'{self.BASE_URL}user/users/')

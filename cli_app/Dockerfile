@@ -31,7 +31,7 @@ RUN pip install -r requirements.txt
 # Copy the project files
 COPY . /app/
 
-CMD ["python3", "cli_app/cli.py"]
+CMD ["sh", "-c", "python3 cli_app/cli.py && tail -f /dev/null"]
 
 # Expose any necessary ports
 EXPOSE 5000
